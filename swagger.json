@@ -1,0 +1,287 @@
+{
+    "swagger" : "2.0",
+    "info": {
+        "version" : "1.0.0",
+        "title" : "Assignment"
+    },
+    "securityDefinitions" : {
+        "bearerAuth" : {
+            "type": "apiKey",
+            "name": "authorization",
+            "scheme": "bearer",
+            "in": "header",
+            "bearerFormat" : "Bearer"
+        }
+    },
+    "consumes" : [
+        "application/json"
+    ],
+    "produces" : [
+        "application/json"
+    ],
+    "paths": {
+        "/users" : {
+            "post" : {
+                "tags" : [
+                    "Create User"
+                ],
+                "description" : "Post API to insert data",
+                "parameters" : [
+                    {
+                        "name" : "userBody",
+                        "in" : "body",
+                        "description" : "User that we want to create",
+                        "schema" : {
+                            "$ref": "#/definitions/userBody"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description": "POST API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/users/login" : {
+            "post" : {
+                "tags" : [
+                    "User Login"
+                ],
+                "description" : "Post API to Login",
+                "parameters" : [
+                    {
+                        "name" : "loginBody",
+                        "in" : "body",
+                        "description" : "User that we want to login",
+                        "schema" : {
+                            "$ref": "#/definitions/loginBody"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description": "Login API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/grocery" : {
+            "get" : {
+                "tags" : [
+                    "Groceries"
+                ],
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "summary" : "Get API to fetch all grocery",
+                "responses" : {
+                    "200" : {
+                        "description": "GET API output"
+                    }
+                }
+            },
+            "post" : {
+                "tags" : [
+                    "Groceries"
+                ],
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "description" : "Post API to insert data",
+                "parameters" : [
+                    {
+                        "name" : "itemBody",
+                        "in" : "body",
+                        "description" : "Item that we want to create",
+                        "schema" : {
+                            "$ref": "#/definitions/itemBody"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description": "POST API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/grocery/{itemId}" : {
+            "parameters" : [
+                {
+                    "name" : "itemId",
+                    "in" : "path",
+                    "required" : true,
+                    "description" : "item Id",
+                    "type": "integer"
+                }
+            ],
+            "put" : {
+                "tags" : [
+                    "Groceries"
+                ],
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "summary" : "Update API",
+                "parameters" : [
+                    {
+                        "name" : "itemBody",
+                        "in" : "body",
+                        "description" : "Item that we want to update",
+                        "schema" : {
+                            "$ref": "#/definitions/itemBody"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description": "Put API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            },
+            "delete" : {
+                "tags" : [
+                    "Groceries"
+                ],
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "summary" : "Delete API",
+                "responses" : {
+                    "200" : {
+                        "description": "delete API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/grocery/orders" : {
+            "post" : {
+                "tags" : [
+                    "Groceries Order"
+                ],
+                "security" : [
+                    {
+                        "bearerAuth" : []
+                    }
+                ],
+                "description" : "Post API to insert data",
+                "parameters" : [
+                    {
+                        "name" : "itemOrderBody",
+                        "in" : "body",
+                        "description" : "Item that we want to create",
+                        "schema" : {
+                            "$ref": "#/definitions/itemOrderBody"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description": "POST API output"
+                    },
+                    "400" : {
+                        "description": "Content Cannot be empty"
+                    },
+                    "500" : {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions" : {
+        "userBody" : {
+            "properties" : {
+                "username" : {
+                    "type" : "string"
+                },
+                "password" : {
+                    "type" : "string"
+                },
+                "role" : {
+                    "type" : "string"
+                }
+            }
+        },
+        "loginBody" : {
+            "properties" : {
+                "username" : {
+                    "type" : "string"
+                },
+                "password" : {
+                    "type" : "string"
+                }
+            }
+        }, 
+        "itemBody" : {
+            "properties" : {
+                "itemName" : {
+                    "type" : "string"
+                },
+                "itemPrice" : {
+                    "type" : "integer"
+                },
+                "itemInventory" : {
+                    "type" : "integer"
+                }
+            }
+        },
+        "itemOrderBody" : {
+            "type" : "array",
+            "items" : {
+                "type" : "object",
+                "properties" : {
+                    "itemId" : {
+                        "type" : "integer"
+                    },
+                    "userId" : {
+                        "type" : "integer"
+                    },
+                    "quantity" : {
+                        "type" : "integer"
+                    }
+                }
+            }
+            
+        }
+    }
+}
