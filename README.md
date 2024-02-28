@@ -12,14 +12,15 @@ Grocery Booking API's to order grocery with following requirements.
     - when user is ordering with specified quantity we are checking if inventory is available then only allowing to order.
     - when user is ordering tracking record in inventory too.
 8. Error Handling
+9. Containerize the application using Docker for ease of deployment and scaling.
 
 
 ### Technology Stack
-Environment :- NodeJS
-Framework :- ExpressJS
-Database :- PostgeSQL
-ORM :- sequelize
-Swagger is used to build, document, test and consume API's 
+- Environment :- NodeJS
+- Framework :- ExpressJS
+- Database :- PostgeSQL
+- ORM :- sequelize
+- Swagger is used to build, document, test and consume API's 
 
 ### Prerequisites
 
@@ -59,12 +60,14 @@ npm run start:dev
 ```
 
 To test the API following methods we can use :-
-1. On postman
-2. On Swagger :- localhost:PORT/api-docs
+1. Using postman
+2. Using Swagger :- localhost:PORT/api-docs
 
 Steps to authorize API's
 
  - create user with role user or admin
  - execute login API with username and password 
- - copy generated token and pass it for bearer authorization e.g. on swagger :- Bearer {TOKEN}, postman :- can select type as bearer token and pass token
+ - copy generated token and pass it for bearer authorization 
+    - Using swagger :- Bearer {TOKEN}
+    - postman :- can select type as bearer token and pass token
  - execute groceries and order other API's
